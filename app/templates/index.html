@@ -5,6 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-    <p>{{ name }} </p>
+<h1>
+    Mi primera webpage
+</h1>
+
+{% block content %}
+    <ul>
+        {% for category in  categories %}
+            <li>{{ category.id }} / {{ category.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+<p>{{ name }} </p>
 </body>
 </html>
