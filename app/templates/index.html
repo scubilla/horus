@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>
-    Mi primera webpage
-</h1>
+{% extends 'home.html' %}
 
 {% block content %}
-    <ul>
-        {% for category in  categories %}
-            <li>{{ category.id }} / {{ category.name }}</li>
-        {% endfor %}
-    </ul>
+    <p>Hello</p>
 {% endblock %}
-
-<p>{{ name }} </p>
-</body>
-</html>
