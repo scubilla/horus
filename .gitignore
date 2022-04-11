@@ -1,8 +1,5 @@
-/app/static/lib/
 .gitignore
 app/core/__pycache__/
-app/static/css/
-app/static/img/
-app/static/js/
 app/venv/Include/
 env/
+/app/static/lib/
