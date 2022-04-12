@@ -1,19 +1,23 @@
-{% extends 'body.html' %}
+{% extends 'list.html' %}
 
-{% block content %}
-<div class="card card-default">
-  <div class="card-header">
-    <h3 class="card-title">
-        <i class="fas fa-search"></i>
-        Listado de categorias
-    </h3>
-  </div>
-  <!-- /.card-header -->
-  <div class="card-body">
-
-  </div>
-  <!-- /.card-body -->
-</div>
-<!-- /.card -->
-
+{% block columns %}
+    <tr>
+      <th scope="col">Nro.</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Opiones</th>
+    </tr>
 {% endblock %}
+
+{% block rows %}
+    {% for c in categories %}
+         <tr>
+             <td>{{ c.id }}</td>
+             <td>{{ c.name }}</td>
+             <td>
+                 <button type="button" class="btn btn-warning btn-sx btn-flat"><i class="fa fa-edit"></i>Editar</button>
+                 <button type="button" class="btn btn-danger btn-sx btn-flat"<i class="fa-solid fa-trash">Eliminar</i></button>
+             </td>
+         </tr>
+    {% endfor %}
+ {% endblock %}
+
