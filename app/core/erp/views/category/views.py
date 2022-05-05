@@ -18,8 +18,8 @@ class CategoryListView(ListView):
     template_name = 'category/list.html'
 
     # cambiando el query set, sobrescribiendo comportamiento de metodos del get
-    def get_queryset(self):
-        return Product.objects.all()
+    #def get_queryset(self):
+    #    return Product.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
