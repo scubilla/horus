@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #    path('prueba/', myFirstView)
     path('erp/', include('app.core.erp.urls'))
+
 ]
