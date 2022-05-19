@@ -35,8 +35,16 @@ class CategoryListView(ListView):
     def post(self, request, *args, **kwargs):
         # data = {'name': 'Simon'}
         data = {}
-        cat = Category.objects.get(pk=request.POST['id'])
-        data['name'] = cat.name
+
+        # controlar el codig de error del jquery del ajax por una excepcion con try cathc
+        try:
+            data = Category.objects.get(pk=request.POST['id']).toJSON()
+           # cat = Category.objects.get(pk=request.POST['id']).toJSON()
+           # data['name'] = cat.name  --> por usar tojson
+        except Exception as e:
+            data['error'] = str(e)
+#        cat = Category.objects.get(pk=request.POST['id'])
+#        data['name'] = cat.name
         return JsonResponse(data)
 
     def get_context_data(self, **kwargs):
