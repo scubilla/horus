@@ -12,10 +12,13 @@
           <!-- /.card-header -->
           <div class="card-body">
               {% csrf_token %}
-                <div class="form-group">
-                    <label for="email">{{ form.name.label }}:</label>
-                    {{ form.name }}
-                </div>
+              {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        <label for="email">{{ field.label }}:</label>
+                        {{ field }}
+                    </div>
+              {% endfor %}
+
 
           </div>
           <!-- /.card-body -->
