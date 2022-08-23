@@ -36,9 +36,7 @@ class CategoryListView(ListView):
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        # data = {'name': 'Simon'}
         data = {}
-
         # controlar el codig de error del jquery del ajax por una excepcion con try cathc
         try:
             data = Category.objects.get(pk=request.POST['id']).toJSON()
@@ -53,7 +51,9 @@ class CategoryListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Listado de Categorias'
-        # print(reverse_lazy('erp:category_list'))
+        context['create_url'] = reverse_lazy('erp:category_create')
+        context['list_url'] = reverse_lazy('erp:category_list')
+        context['entity'] = 'Categorias'
         return context
 
 class CategoryCreateView(CreateView):
@@ -63,8 +63,28 @@ class CategoryCreateView(CreateView):
     # redireccionar luego de grabar
     success_url = reverse_lazy('erp:category_list')
 
+    # volvemos a sobreescribir el metodo post
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            action = request.POST['action']
+            if action =='add':
+                form = self.get_form()
+                if form.is_valid():
+                    form.save()
+                else:
+                    data = form.errors
+            else:
+                 data['error'] = 'No ha ingresado ninguna opcion'
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Creación de una Categoria'
+        context['list_url'] = reverse_lazy('erp:category_list')
+        context['entity'] = 'Categorias'
+        context['action'] = 'add'
         return context
 
