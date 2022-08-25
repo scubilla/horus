@@ -70,10 +70,8 @@ class CategoryCreateView(CreateView):
             action = request.POST['action']
             if action =='add':
                 form = self.get_form()
-                if form.is_valid():
-                    form.save()
-                else:
-                    data = form.errors
+                data = form.save()
+
             else:
                  data['error'] = 'No ha ingresado ninguna opcion'
         except Exception as e:

@@ -73,8 +73,13 @@
                 type: "POST",
                 data : parameters,
                 dataType: 'json'
-                }).done(function(data) {
-                    alert('Guardado');
+                }).done(function (data) {
+                    if(!data.hasOwnProperty('error')){
+                        Location.href = {{ lsit_url }};
+                        return false;
+                    }
+                }
+                message_error(data.error);
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     alert(textStatus+ " : "+errorThrown);
